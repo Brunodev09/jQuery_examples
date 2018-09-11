@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery</title>
+	<script
+	src="https://code.jquery.com/jquery-2.2.4.js"
+	integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+	crossorigin="anonymous"></script>
+
+	<style type="text/css">
+		.right {
+			color:green;
+		}
+		.wrong {
+			color:red;
+		}
+		div {
+			width: 100px;
+			height: 100px;
+			background: teal;
+			float: left;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+
+<h1 id="special">Test</h1>
+<h1>Methods</h1>
+
+<div>Effect1</div>
+<div>Effect2</div>
+<div>Effect3</div>
+
+<input type="text" placeholder="your name">
+<select>
+	<option>Small feet</option>
+	<option>Medium</option>
+	<option>Big</option>
+</select>
+
+<ul>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ul>
+
+<img src="http://www.google.com">
+<button>Don't click me!</button>
+<button id="eff">Click me for Effects!</button>
+
+<script type="text/javascript">
+	//----Select elements with $()----//
+
+	$("img"); //Selects all img tags
+
+	$(".sale"); //Selects all elements with class sale
+
+	$("#bonus"); //Selects all elements with id bonus
+
+	$("li a"); //Selects all anchor tags inside of li's
+
+	$("div:first-of-type"); //Selects first div
+
+	$("div").first(); //Also selects the first div of the page
+
+	$("div").last(); //Selects the last div of the page
+
+
+
+	//----use .css() to style elements----// -->$(selector).css(property, value)
+	$("#special").css("border", "2px solid red");
+
+	//Can also pass in an object with the wanted styles in it
+	var styles = {
+		backgroundColor: "pink",
+		fontWeight: "bold",
+	};
+
+	$("#special").css(styles);
+
+	//Can change multiple elements at the same time without looping through them
+	$("li").css("color", "blue");
+
+
+	//----jQuery Methods----//
+
+	$("h1").text(); //Will retrieve string text, just like textContent. Will only edit string, not HTML code
+
+	$("h1").html(); //Will retrieve string with the HTML code, so you can edit it
+
+	//$("h1").attr(); //Will retrieve and edit attributes
+	$("h1").attr("src", "http://www.facebook.com");
+	$("input").attr("placeholder", "I love feet");
+	//$("input").attr("type", "checkbox");
+
+	//$("input").val(); Will retrieve and edit values
+	$("input").val("I really love feet");
+
+	$("select").val();
+
+	$("h1").addClass("correct"); //Adds a CSS class to the selected element
+	$("h1").removeClass("correct"); //Removes a CSS class to the selected element
+	$("h1").toggleClass("correct"); //If the given element doesnt have that class activated, it will activate it. And vice versa.
+
+	//----jQuery Events----//
+
+	$("button").click(function() {
+		$(this).css("backgroundColor", "blue");
+	});
+
+	$('input[type="text"]').keypress(function(event) {
+		if (event.which === 13) console.log("Enter key was pressed!"); //Event is an object. Which is a parameter that will point to a keycode.
+	});
+
+	$("button").on("click", function() { //Works just like pure JS method .addEventListener();
+		alert("Works.");
+	});
+
+	$("button").on("mouseenter", function() {
+		$(this).css("font-weight", "bold");
+	});
+
+	$("button").on("mouseleave", function() {
+		$(this).css("font-weight", "normal");
+	});
+
+	//----jQuery effects----//
+
+	$("#eff").on("click", function() {
+		$("div").fadeOut(1000, function() { 
+		//fadeIn() works the same way but does the inverse animation. //fadeToggle() will work like the toggleClass(). slideUp() and slideDown() will fade them in different animations
+		//slideToggle can also be used
+			alert("Fade completed!");
+			$(this).remove(); //This removes the divs
+		}); //.fadeOut(time paramater, callback function to execute code AFTER fadeout is completed) 1000ms = 1s
+	});
+
+
+
+
+
+</script>
+</body>
+</html>
